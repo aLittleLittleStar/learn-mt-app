@@ -1,3 +1,5 @@
+[TOC]
+
 # learn-mt-app
 
 > My splendid Nuxt.js project
@@ -22,7 +24,7 @@ $ npm run generate
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
 
-
+### 项目脚手架搭建 (progect-preparation)
 
 #### 项目构建流程
 ##### 进行克隆github上面的项目
@@ -130,3 +132,21 @@ added 1095 packages from 543 contributors in 696.599s
 
 #### 注意事项
 nuxt要从2.0 降级到1.4.2，避免后面模板没有更新带来的问题
+进行重新编译防止报错 npm install --update-binary
+安装 sass-loader 、node-sass
+
+### 首页开发 (home-page)
+#### 需求分析
++ 模板设计
+  + header 
+    + topBar
+    + searchBar 
+  + body
+  + footer
++ 组件设计
+  + 如何节省网络请求？
+  + 如何语义化？
+  + DOM最简化？
++ 数据结构设计
++ 接口设计
+
