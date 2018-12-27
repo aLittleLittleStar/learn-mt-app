@@ -218,9 +218,7 @@ nuxt要从2.0 降级到1.4.2，避免后面模板没有更新带来的问题
 安装 mongoose
 ``` js
 npm install mongoose  --save
-<<<<<<< HEAD
 ```
-=======
 ```
 
 #### 新建文件夹
@@ -271,4 +269,4 @@ npm install passport-local --save
 npm install crypto-js --save
 
 ### 第八章用户注册登录功能的实现
->>>>>>> user-login
+ user-login
