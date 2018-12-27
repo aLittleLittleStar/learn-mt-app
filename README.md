@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // /*
 // * @Author: Star
 // * @Date:   2018-12-19 19:44:05
@@ -41,6 +42,9 @@
 // 
 // 
 // [TOC]
+=======
+[TOC]
+>>>>>>> user-login
 
 # learn-mt-app
 
@@ -63,6 +67,19 @@ $ npm start
 $ npm run generate
 ```
 
+<<<<<<< HEAD
+=======
+### 运行该项目
+启动 redis
+redis-server 
+
+启动 mongoose
+mongod
+
+启动程序
+npm run dev
+
+>>>>>>> user-login
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
 
@@ -201,4 +218,57 @@ nuxt要从2.0 降级到1.4.2，避免后面模板没有更新带来的问题
 安装 mongoose
 ``` js
 npm install mongoose  --save
+<<<<<<< HEAD
 ```
+=======
+```
+
+#### 新建文件夹
++ server 
+  + dbs
+    + modles
+      + users.js
+    + config.js
+  + interfance
+    + utils
+      + axios.js
+      + passport.js
+    + users.js
+  + index.js
+  
+
+#### 生成QQ邮箱授权码
+> 登录QQ邮箱
+> 
+> 点击设置
+> 
+> 点击账号进行设置
+> 
+> 点击生成授权码进行发送短信验证
+
+```
+开启服务：
+POP3/SMTP服务 (如何使用 Foxmail 等软件收发邮件？)                 已开启 |  关闭
+IMAP/SMTP服务 (什么是 IMAP，它又是如何设置？)                     已开启 |  关闭
+Exchange服务 (什么是Exchange，它又是如何设置？)                   已关闭 |  开启
+CardDAV/CalDAV服务 (什么是CardDAV/CalDAV，它又是如何设置？)       已关闭 |  开启
+(POP3/IMAP/SMTP/CardDAV/CalDAV服务均支持SSL连接。如何设置？)
+
+温馨提示：登录第三方客户端时，密码框请输入“授权码”进行验证。生成授权码
+```
+
+### 安装插件包
+``` js
+npm install koa-redis --save
+npm install koa-router --save
+npm install nodemailer --save
+npm install axios --save
+npm install koa-passport --save
+npm install passport-local --save
+```
+
+代码加密库
+npm install crypto-js --save
+
+### 第八章用户注册登录功能的实现
+>>>>>>> user-login
