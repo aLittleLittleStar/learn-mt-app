@@ -78,6 +78,8 @@
 </template>
 
 <script>
+// 密码加密库
+import CryptoJS from 'crypto-js'
 export default {
   data () {
     return {
@@ -131,8 +133,78 @@ export default {
  },
   layout: 'blank',
   methods: {
-    sendMsg: function () {},
-    register: function () {}
+    sendMsg: function () {
+      const self = this
+      let namePass
+      let emailPass
+      if (self.timerid) {
+        return false
+      }
+      // 判断校验用户名
+      this.$refs['ruleForm'].validateField('name', (valid) => {
+        namePass = valid
+      })
+      self.statusMsg = ''
+      if (namePass) {
+        return false
+      }
+      this.$refs['ruleForm'].validateField('email', (valid) => {
+        emailPass = valid
+      })
+      // 验证逻辑
+      if (!namePass && !emailPass) {
+        console.log("-------------------------------------------")
+        self.$axios.post('/users/verify', {
+          // encodeURIComponent对中文进行编码
+          username: encodeURIComponent(self.ruleForm.name),
+          email: self.ruleForm.email
+        }).then(({
+          status, 
+          data
+        }) => {
+          if (status === 200 && data && data.code === 0) {
+            let count = 60
+            self.statusMsg = `验证码已发送，剩余${count--}秒`
+            self.timerid = setInterval(function () {
+              self.statusMsg = `验证码已发送，剩余${count--}秒`
+              if (count === 0) {
+                clearInterval(self.timerid)
+              }
+            }, 1000)
+          } else {
+            self.statusMsg = data.msg
+          }
+        })
+      }
+    },
+    register: function () {
+      let self = this
+      this.$refs['ruleForm'].validate((valid) => {
+        if (valid) {
+          // 发起注册接口的动作
+          self.$axios.post('/users/signup', {
+            username: window.encodeURIComponent(self.ruleForm.name),
+            password: CryptoJS.MD5(self.ruleForm.pwd).toString(),
+            email: self.ruleForm.email,
+            code: self.ruleForm.code
+          }).then(({status, data}) => {
+            if (status === 200) {
+              if (data && data.code === 0) {
+                location.href = '/login'
+              } else {
+                self.error = data.msg
+              }
+            } else {
+              self.error = `服务器出错，错误码:${status}`
+            }
+            // 定时器，清除错误
+            setTimeout(function () {
+              self.error = ''
+            }, 1500)
+          })
+        }
+      })
+    }
   }
 }
 </script>
